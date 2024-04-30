@@ -2,7 +2,7 @@
 using namespace std;
 
 // definicao de tipo
-// by lívia
+// by lívia neves
 struct NO {
 	int valor;
 	NO* anterior;
