@@ -4,7 +4,7 @@ using namespace std;
 // definicao de tipo
 struct NO {
 	int valor;
-	NO* prox;
+	NO* anterior;
 };
 
 NO* topo = NULL;
@@ -64,7 +64,7 @@ void inicializar()
 	NO* aux = topo;
 	while (aux != NULL) {
 		NO* paraExcluir = aux;
-		aux = aux->prox;
+		aux = aux->anterior;
 		free(paraExcluir);
 	}
 
@@ -85,15 +85,29 @@ void push()
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
-	novo->prox = NULL;
+	novo->anterior = NULL;
 
+	if (topo == NULL) {
+		topo = novo;
+		cout << "Elemento incluido com sucesso" << endl;
+		return;
+	}
+	novo->anterior = topo;
+	topo = novo;
 
 }
 
 void pop()
 {
+	if (topo == NULL) {
+		cout << "Pilha vazia" << endl;
+		return;
+	}
 
-	
+	NO* aux = topo;
+	topo = aux->anterior;
+	cout << "Elemento" << aux->valor << "excluido com sucesso" << endl;
+	free(aux);
 
 }
 
